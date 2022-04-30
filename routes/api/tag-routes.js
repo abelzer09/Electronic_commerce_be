@@ -23,7 +23,7 @@ router.get('/:id', async (req, res) => {
   // be sure to include its associated Product data
   try {
     const tagData = await Tag.findByPk(req.params.id, {
-      include: [{ model: Product, model: ProductTag }],
+      include: [{ model: Product, ProductTag }],
     });
 
     if (!tagData) {
@@ -31,7 +31,7 @@ router.get('/:id', async (req, res) => {
       return;
     }
     console.log(tagData)
-    res.status.apply(200).json(tagData);
+    res.status(200).json(tagData);
   } catch (err) {
     res.status(500).json(err);
   }
